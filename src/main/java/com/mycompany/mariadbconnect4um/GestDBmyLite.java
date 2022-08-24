@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class GestDBmyLite{
+    private static String IP_DB="89.46.196.112:3306/"; //contiene IP Server DB
     private String urlDB;  //contiene la stringa di connessione al DB
     private String driver; //contiene il driver del DB
     private String userDB; // se DB MySQL contiene username per accedere al db
@@ -33,7 +34,7 @@ public class GestDBmyLite{
         this.passDB=passDB;
         this.nomeDB=nomeDB;
         driver="com.mysql.cj.jdbc.Driver";
-        urlDB="jdbc:mysql://80.211.81.8:3306/"+nomeDB+"?zeroDateTimeBehavior=ConvertToNull";//evita errore sulle date nulle
+        urlDB="jdbc:mysql://"+IP_DB+nomeDB+"?zeroDateTimeBehavior=ConvertToNull";//evita errore sulle date nulle
         try {  //carico il driver
             Class.forName(driver); 
         }
@@ -240,7 +241,7 @@ public class GestDBmyLite{
     public void setNomeDB(String nomeDB) {
         this.nomeDB = nomeDB;
         if (tipoDB)
-            urlDB="jdbc:mysql://80.211.81.8:3306/"+nomeDB+"?zeroDateTimeBehavior=ConvertToNull";//evita errore sulle date nulle
+            urlDB="jdbc:mysql://"+IP_DB+nomeDB+"?zeroDateTimeBehavior=ConvertToNull";//evita errore sulle date nulle
         else
             urlDB="jdbc:sqlite:"+nomeDB;
     }
